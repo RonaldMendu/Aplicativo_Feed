@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wakke/CustomSearchDelegate.dart';
 import 'package:wakke/model/conteudo.dart';
 
 class Tela extends StatefulWidget {
@@ -47,42 +48,60 @@ class _TelaState extends State<Tela> {
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.grey),
         backgroundColor: Colors.white,
-        title: Text(
-          "Wakke",
-          style: TextStyle(color: Colors.black, fontSize: 25),
+        title: Image.asset(
+          "images/logo_wakke_roxo.png",
+          width: 130,
         ),
+        // leading: IconButton(
+        //     icon: Image.asset(
+        //       "images/icon_header_menu.png",
+        //       width: 20,
+        //     ),
+        //     onPressed: () => Scaffold.of(context).openDrawer()),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: () {})
+          IconButton(
+              icon: Image.asset(
+                "images/icon_header_search.png",
+                width: 20,
+              ),
+              onPressed: () async {
+                showSearch(context: context, delegate: CustomSearchDelegate());
+              })
         ],
       ),
       drawer: Drawer(
         child: Container(
-          color: Colors.deepPurple[400],
+          color: Color(0xff6A40FF),
           child: Column(
             children: [
               Container(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 50),
-                      child: Text(
-                        "Wakke",
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                        ),
-                      ),
+                    SizedBox(height: 50),
+                    Image.asset(
+                      "images/logo_wakke_fun_branco.png",
+                      width: 150,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 70),
-                      child: Text(
-                        "Fun",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(top: 50),
+                    //   child: Text(
+                    //     "Wakke",
+                    //     style: TextStyle(
+                    //       fontSize: 30,
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 70),
+                    //   child: Text(
+                    //     "Fun",
+                    //     style: TextStyle(
+                    //       fontWeight: FontWeight.bold,
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(height: 20),
                     Container(
                       decoration: BoxDecoration(
@@ -167,19 +186,23 @@ class _TelaState extends State<Tela> {
         child: Column(
           children: <Widget>[
             Container(
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.grey[200])),
-              margin: EdgeInsets.all(20),
+              decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+              // margin: EdgeInsets.all(20),
               child: TextField(
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.chat_bubble),
-                    hintText: "Está acontecendo..."),
+                    icon: Image.asset(
+                      "images/icon_chat.png",
+                      width: 20,
+                    ),
+                    // prefixIcon: Icon(Icons.chat_bubble),
+                    hintText: "Está acontecendo...",
+                    hintStyle: TextStyle(color: Color(0xff6A40FF))),
               ),
             ),
             Column(
               children: <Widget>[
                 SizedBox(
-                  height: 550,
+                  height: size.height * 0.764,
                   child: ListView.builder(
                       itemCount: conteudo.length,
                       itemBuilder: (context, index) {
@@ -225,26 +248,35 @@ class _TelaState extends State<Tela> {
           ],
         ),
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(type: BottomNavigationBarType.fixed, items: [
-        BottomNavigationBarItem(
-            //backgroundColor: Colors.orange,
-            label: "",
-            icon: Icon(Icons.menu),
-            backgroundColor: Colors.grey),
-        BottomNavigationBarItem(
-            //backgroundColor: Colors.red,
-            label: "",
-            icon: Icon(Icons.add_box)),
-        BottomNavigationBarItem(
-            //backgroundColor: Colors.blue,
-            label: "",
-            icon: Icon(Icons.person)),
-        BottomNavigationBarItem(
-            //backgroundColor: Colors.green,
-            label: "",
-            icon: Icon(Icons.notifications)),
-      ]),
+      floatingActionButton: IconButton(
+        icon: Image.asset(
+          "images/button_fun.png",
+        ),
+        onPressed: () {},
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          fixedColor: Color(0xff6A40FF),
+          items: [
+            BottomNavigationBarItem(
+                //backgroundColor: Colors.orange,
+                label: "",
+                icon: Image.asset("images/icon_challengers.png", width: 20),
+                backgroundColor: Colors.grey),
+            BottomNavigationBarItem(
+                //backgroundColor: Colors.red,
+                label: "",
+                icon: Image.asset("images/icon_add.png", width: 20)),
+            BottomNavigationBarItem(
+                //backgroundColor: Colors.blue,
+                label: "",
+                icon: Image.asset("images/icon_user.png", width: 20)),
+            BottomNavigationBarItem(
+                //backgroundColor: Colors.green,
+                label: "",
+                icon: Image.asset("images/icon_notificacoes.png", width: 20)),
+          ]),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
